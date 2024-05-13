@@ -91,6 +91,9 @@ export const authOptions = {
     async session({ session, token }) {
       // this is the function which is responsible for sending the data in
       // useSession or useServerProps
+      // import { useSession } from "next-auth/react"; for client components
+      // import { getServerSession } from "next-auth/next";
+      // const { user, token } = await getServerSession(authOptions)
       const { user, token: access_token } = token || {};
       session.user = user;
       session.token = access_token;

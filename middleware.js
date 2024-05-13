@@ -1,33 +1,35 @@
 import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
 export default withAuth(
-  // `withAuth` augments your `Request` with the user's token.
   async function middleware(req) {
     const {
-      nextauth: {
-        token: { token },
-      },
+      nextUrl: { pathname },
+
+      nextauth: { token },
     } = req;
 
-    if (req.method === "GET" && ["login", "signup"].includes(req.url)) {
-      // Assuming you have a function to get the session data
-      if (token) {
-        res.writeHead(302, { Location: "/dashboard" }); // Redirect to dashboard or any other private route
-        res.end();
-        return;
-      }
+    if (pathname.startsWith("/auth") && token) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    if (["/", "/blog"].includes(pathname) && !token) {
+      return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   },
   {
     callbacks: {
-      authorized: ({ token }) => {
-        console.log(token, "token>>>>>>>>>>");
-        // const { user, token: accessToken } = token || {};
+      authorized: ({ token, req }) => {
+        const {
+          nextUrl: { pathname },
+        } = req;
 
-        return !!token;
+        return (!token && pathname.startsWith("/auth")) || !!token;
       },
     },
   }
 );
 
-export const config = { matcher: ["/", "/blog"] };
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"], // will execute the middleware on every route
+};

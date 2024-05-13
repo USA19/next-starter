@@ -3,6 +3,7 @@ import NavLink from "@/app/{components}/common/NavLink";
 
 function Default(props) {
   const { children } = props;
+
   return (
     <div>
       <div className="relative float-right h-full min-h-screen w-full dark:!bg-navy-900">
