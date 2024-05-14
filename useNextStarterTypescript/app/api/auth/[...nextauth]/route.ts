@@ -1,9 +1,9 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { client } from "@/mock-api";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
@@ -22,7 +22,7 @@ export const authOptions = {
         },
       },
 
-      async authorize(credentials, _req) {
+      async authorize(credentials, _req): Promise<User | null> {
         try {
           const { email = "", password = "" } = credentials || {};
           const { data: { access_token = "" } = {} } = await client.POST(
@@ -51,8 +51,8 @@ export const authOptions = {
     }),
 
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       authorization: {
         params: {
           prompt: "consent",
@@ -84,8 +84,8 @@ export const authOptions = {
       // import { getServerSession } from "next-auth/next";
       // const { user, token } = await getServerSession(authOptions)
       const { token } = user || {};
-      session.user = user;
-      session.token = token;
+      session.user = user as User;
+      session.token = token as string;
       return session;
     },
   },
