@@ -1,7 +1,7 @@
 import NextAuth, { AuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { client } from "@/mock-api";
+import { client } from "@/api-client";
 
 export const authOptions: AuthOptions = {
   pages: {

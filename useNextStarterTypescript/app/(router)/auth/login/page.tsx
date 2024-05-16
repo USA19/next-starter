@@ -12,8 +12,8 @@ function SignInDefault() {
     mode: "all",
     resolver: yupResolver(loginValidationSchema),
     defaultValues: {
-      email: "muhamedusama468@gmail.com",
-      password: "Super123!",
+      email: "",
+      password: "",
     },
   });
 

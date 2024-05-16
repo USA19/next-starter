@@ -1,11 +1,16 @@
-"use client";
-import { useSession } from "next-auth/react";
+import { client } from "@/api-client";
 
-function blog() {
-  const data = useSession();
+async function blog() {
+  const { data: { users = [] } = {} } = await client.GET("/users", {
+    params: {
+      query: {
+        limit: 10,
+        page: 1,
+      },
+    },
+  });
 
-  console.log(data, "useSession>>>>>>>>>>>>>>>");
-
+  console.log(users, "users>>>>>>>>>>>>>>>>>>>");
   return <div>blog</div>;
 }
 
