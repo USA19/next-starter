@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "../{utils}";
 
 export const baseURL =
-  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001";
+  process.env.NEXT_PUBLIC_BASE_API_URL || "http://localhost:3001";
 
 const server = axios.create({ baseURL });
 const {
