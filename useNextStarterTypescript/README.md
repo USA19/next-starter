@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Basic NextApp
+
+This is a barebon [Next.js]() app with [authentication]() ( basic/google-auth ), [authorization]() in place using `next-auth`, `Tailwindcss`, `openapi-typescript` ( for generating types ), `openapi-fetch` and `Typescript`.
+
+## Features
+
+- Next-auth
+- google-auth
+- Tailwindcss
+- openapi-typescript
+- Typescript
+- Rest APIs
+- yup
+- react-hook-from
+- @hookform/resolvers
+- react-icons
+
+## Before you start
+
+Add the environment variables in .env, To know all the env variables to be entered please check `.env.example` file and chekck `package.json` file to update the following script.
+
+`"generate-types": "npx openapi-typescript path-to-swegger-json -o ./generated/index.ts"`
+
+That's it.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies using
+
+```bash
+npm install
+```
+
+now, generate your types using this command
+
+```bash
+npm generate-types
+```
+
+and then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development Guidlines
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Edit the `tailwind.config.ts` and `app/globals.css` to update the theme of the app
 
-## Learn More
+- Change the user type according to your user in the `types/next-auth.d.ts` file for next-auth to know the type or user.
 
-To learn more about Next.js, take a look at the following resources:
+- Edit the `middleware.ts` file to update the authentication or authorization logic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Edit the signin method in `app/api/auth/[...nextauth]/route.ts` file according to your application, also change the login route to login.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- You can more providers or more login options using the different providers, provided by the next-auth ( for more information pleasse visit [https://next-auth.js.org/providers/]() )
 
-## Deploy on Vercel
+- To make an api call from the client and server components you need to import `useClientAuth` hook from `lib/hook` and `client` from `api-client` respectivly.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Enjoy Coding!
