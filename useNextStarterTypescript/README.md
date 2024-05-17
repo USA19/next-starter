@@ -1,6 +1,6 @@
 # Basic NextApp
 
-This is a barebon [Next.js]() app with [authentication]() ( basic/google-auth ), [authorization]() in place using `next-auth`, `Tailwindcss`, `openapi-typescript` ( for generating types ), `openapi-fetch` and `Typescript`.
+This is a barebon `Next.js` app with `authentication` ( basic/google-auth ), `authorization` in place using `next-auth`, `Tailwindcss`, `openapi-typescript` ( for generating types ), `openapi-fetch` and `Typescript`.
 
 ## Features
 
@@ -55,7 +55,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Edit the signin method in `app/api/auth/[...nextauth]/route.ts` file according to your application, also change the login route to login.
 
-- You can more providers or more login options using the different providers, provided by the next-auth ( for more information pleasse visit [https://next-auth.js.org/providers/]() )
+- You can more providers or more login options using the different providers, provided by the next-auth ( for more information pleasse visit [https://next-auth.js.org/providers/](https://next-auth.js.org/providers/) )
 
 - To make an api call from the client and server components you need to import `useClientAuth` hook from `lib/hook` and `client` from `api-client` respectivly.
 
