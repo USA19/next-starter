@@ -4,22 +4,22 @@ This is a barebon `Next.js` app with `authentication` ( basic/google-auth ), `au
 
 ## Features
 
-- Next-auth
-- google-auth
-- Tailwindcss
-- openapi-typescript
 - Typescript
-- Rest APIs
-- yup
-- react-hook-from
+- Next-auth
+- Google-auth
+- Tailwind css
+- openapi-typescript for types generation from backend
+- Rest APIs Integration
+- Yup (schema builder for runtime value parsing and validation)
+- react-hook-form
 - @hookform/resolvers
 - react-icons
 
 ## Before you start
 
-Add the environment variables in .env, To know all the env variables to be entered please check `.env.example` file and chekck `package.json` file to update the following script.
+Make a copy of `.env.example` file as `.env` and add environment variables accordingly and update the generate-types script in `package.json` file to update the path to your swagger json document.
 
-`"generate-types": "npx openapi-typescript path-to-swegger-json -o ./generated/index.ts"`
+`"generate-types": "npx openapi-typescript ${path-to-swegger-json} -o ./generated/index.ts"`
 
 That's it.
 
