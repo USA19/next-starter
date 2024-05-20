@@ -1,7 +1,7 @@
+import axios from "@/lib/axios";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { client } from "@/mock-api";
 
 export const authOptions = {
   pages: {
@@ -25,15 +25,16 @@ export const authOptions = {
       async authorize(credentials, _req) {
         try {
           const { email = "", password = "" } = credentials || {};
-          const { data: { access_token = "" } = {} } = await client.POST(
+          const { data: { access_token = "" } = {} } = await axios.post(
             "/users/login",
             {
-              body: { email, password },
+              email,
+              password,
             }
           );
 
           if (access_token) {
-            const { data: { user = null } = {} } = await client.GET(
+            const { data: { user = null } = {} } = await axios.get(
               "/users/me",
               {
                 headers: { authorization: `Bearer ${access_token}` },
