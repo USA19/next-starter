@@ -1,13 +1,12 @@
-import { getServerSession } from "next-auth/next";
 import createClient, { Middleware } from "openapi-fetch";
 import type { paths } from "./generated";
-import { authOptions } from "./app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 
-const myMiddleware: Middleware = {
+const apiClientMiddleware: Middleware = {
   async onRequest(req, _options) {
-    const { token } = (await getServerSession(authOptions)) || {};
+    const { token } = (await auth()) || {};
 
-    req.headers.set("Authorization", `Bearer ${token}`);
+    token && req.headers.set("Authorization", `Bearer ${token}`);
     return req;
   },
 
@@ -27,4 +26,4 @@ export const client = createClient<paths>({
   baseUrl: process.env.NEXT_PUBLIC_BASE_API_URL,
 });
 
-client.use(myMiddleware);
+client.use(apiClientMiddleware);

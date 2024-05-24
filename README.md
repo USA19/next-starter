@@ -1,18 +1,16 @@
 # Next.js Starter Packages
 
-This repository contains starter packages Rest API's, Tailwind and JavaScript/Typescript.
+This repository contains starter packages Rest API's, Tailwind, Material-ui and JavaScript/Typescript.
 
 ## Included Packages:
 
 - ### Next-Starter-Javascript-Tailwind:
 
-  A Next.js starter package pre-configured for Rest API's integration.
-
 - ### Next-Starter-Typescript-Tailwind:
 
-  A Next.js package that integrates TypeORM with GraphQL for efficient data handling.
+- ### Next-Starter-Typescript-Mui:
 
-Each package comes equipped with pre-configured user authentication and authorization modules using `next-auth`.
+Each package comes equipped with pre-configured user authentication and authorization modules using `next-auth` but the `Next-Starter-Typescript-Mui` has the [next-auth-v5 (beta version)](https://authjs.dev/getting-started) integrated in it.
 
 ## Getting Started:
 
